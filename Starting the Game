@@ -1,0 +1,8 @@
+if __name__ == "__main__":
+    player = Player(name="Warrior", health=100, attack=25)
+    enemy = Enemy(name="Monster", health=80, attack=15)
+
+    print(f"{player.name} vs {enemy.name} - Battle Begins!")
+    
+    battle = Battle(player, enemy)
+    battle.start_battle()
