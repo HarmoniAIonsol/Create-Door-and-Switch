@@ -1,0 +1,32 @@
+class Door:
+    def __init__(self, locked=True):
+        self.locked = locked
+        self.open = False
+
+    def toggle(self, player):
+        """Player toggles the door state"""
+        if self.locked:
+            print("The door is locked. You need a key to open it.")
+        else:
+            self.open = not self.open
+            state = "opened" if self.open else "closed"
+            print(f"The door is now {state}!")
+
+    def unlock(self, player):
+        """Unlock the door"""
+        self.locked = False
+        print("The door is now unlocked!")
+
+
+# Create door instance
+door = Door()
+player = Player(name="Hero", health=100, attack=20)
+
+# Player tries to toggle the door
+door.toggle(player)
+
+# Player unlocks the door
+door.unlock(player)
+
+# Player tries to toggle the door again
+door.toggle(player)
