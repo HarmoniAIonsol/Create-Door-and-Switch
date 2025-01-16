@@ -1,0 +1,38 @@
+import random
+
+class Battle:
+    def __init__(self, player, enemy):
+        self.player = player
+        self.enemy = enemy
+
+    def player_turn(self):
+        """Player's turn"""
+        print(f"It's {self.player.name}'s turn!")
+        action = input("Choose an action: 1. Attack  2. Defend: ")
+        if action == "1":
+            self.player.attack_enemy(self.enemy)
+        elif action == "2":
+            print(f"{self.player.name} is preparing to defend!")
+        else:
+            print("Invalid choice, skipping turn.")
+
+    def enemy_turn(self):
+        """Enemy's turn"""
+        print(f"It's {self.enemy.name}'s turn!")
+        action = random.choice(["Attack", "Defend"])
+        if action == "Attack":
+            self.enemy.attack_player(self.player)
+        else:
+            print(f"{self.enemy.name} is preparing to defend!")
+
+    def start_battle(self):
+        """Start the battle"""
+        while self.player.is_alive() and self.enemy.is_alive():
+            self.player_turn()
+            if not self.enemy.is_alive():
+                print(f"{self.enemy.name} has been defeated!")
+                break
+            self.enemy_turn()
+            if not self.player.is_alive():
+                print(f"{self.player.name} has been defeated!")
+                break
