@@ -1,0 +1,40 @@
+class Player:
+    def __init__(self, name, health, attack):
+        self.name = name
+        self.health = health
+        self.attack = attack
+
+    def take_damage(self, damage):
+        """Player takes damage"""
+        self.health -= damage
+        print(f"{self.name} took {damage} damage, remaining health: {self.health}")
+        
+    def attack_enemy(self, enemy):
+        """Player attacks enemy"""
+        print(f"{self.name} attacked {enemy.name}, causing {self.attack} damage")
+        enemy.take_damage(self.attack)
+        
+    def is_alive(self):
+        """Check if player is still alive"""
+        return self.health > 0
+
+
+class Enemy:
+    def __init__(self, name, health, attack):
+        self.name = name
+        self.health = health
+        self.attack = attack
+
+    def take_damage(self, damage):
+        """Enemy takes damage"""
+        self.health -= damage
+        print(f"{self.name} took {damage} damage, remaining health: {self.health}")
+
+    def attack_player(self, player):
+        """Enemy attacks player"""
+        print(f"{self.name} attacked {player.name}, causing {self.attack} damage")
+        player.take_damage(self.attack)
+
+    def is_alive(self):
+        """Check if enemy is still alive"""
+        return self.health > 0
